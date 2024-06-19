@@ -1,0 +1,21 @@
+import random
+
+def player(prev_play, opponent_history=[]):
+    # Append the previous play of the opponent to the history
+    if prev_play:
+        opponent_history.append(prev_play)
+
+    # Initialize the strategy
+    ideal_response = {'R': 'P', 'P': 'S', 'S': 'R'}
+
+    # Strategy 1: Frequency Analysis
+    if len(opponent_history) > 0:
+        most_common = max(set(opponent_history), key=opponent_history.count)
+        return ideal_response[most_common]
+    
+    # Default move (first move)
+    return random.choice(['R', 'P', 'S'])
+
+# Example usage:
+# print(player(""))  # For the first move
+# print(player("R"))  # For subsequent moves
